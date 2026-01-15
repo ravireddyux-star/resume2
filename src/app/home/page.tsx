@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import DraggableChip from "@/components/ui/DraggableChip";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -10,6 +11,8 @@ import Footer from "@/components/ui/Footer";
 export default function Home() {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+
+    const containerRef = useRef(null);
 
     function handleMouseMove(e: React.MouseEvent) {
         const { clientX, clientY } = e;
@@ -40,7 +43,7 @@ export default function Home() {
             <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-800/20 via-background to-background pointer-events-none z-0" />
 
             {/* Hero Section */}
-            <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+            <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
                 {/* Hero Text */}
                 <motion.div
                     style={{ x: springX, y: springY, rotateX: springRotateX, rotateY: springRotateY }}
@@ -55,12 +58,17 @@ export default function Home() {
                 </motion.div>
 
                 {/* Draggable Chips (The Chaos) */}
-                <DraggableChip label="16 Yrs Exp" className="top-[15%] left-[8%] md:left-[15%]" initialPos={{ x: 0, y: 0 }} />
-                <DraggableChip label="AI Strategy" className="top-[20%] right-[8%] md:right-[20%]" initialPos={{ x: 0, y: 0 }} />
-                <DraggableChip label="HP Inc" className="bottom-[30%] left-[5%] md:left-[20%]" initialPos={{ x: 0, y: 0 }} />
-                <DraggableChip label="Cisco" className="bottom-[25%] right-[5%] md:right-[15%]" initialPos={{ x: 0, y: 0 }} />
-                <DraggableChip label="UX Lead" className="top-[45%] left-[80%] md:left-[75%]" initialPos={{ x: 0, y: 0 }} />
-                <DraggableChip label="$3M ROI" className="bottom-[40%] left-[10%] md:left-[30%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="16 Yrs Exp" className="top-[15%] left-[8%] md:left-[15%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="AI Strategy" className="top-[20%] right-[8%] md:right-[20%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="HP Inc" className="bottom-[30%] left-[5%] md:left-[20%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="Cisco" className="bottom-[25%] right-[5%] md:right-[15%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="UX Lead" className="top-[45%] left-[80%] md:left-[75%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="$3M ROI" className="bottom-[40%] left-[10%] md:left-[30%]" initialPos={{ x: 0, y: 0 }} />
+                {/* New Chips */}
+                <DraggableChip constraintsRef={containerRef} label="Figma" className="top-[10%] left-[40%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="Design Systems" className="bottom-[15%] right-[30%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="Prototyping" className="top-[60%] right-[10%]" initialPos={{ x: 0, y: 0 }} />
+                <DraggableChip constraintsRef={containerRef} label="Leadership" className="top-[30%] left-[5%]" initialPos={{ x: 0, y: 0 }} />
 
                 {/* Magnetic CTA */}
                 <div className="absolute bottom-24 md:bottom-24 z-30">

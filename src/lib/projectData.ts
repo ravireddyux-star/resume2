@@ -1,14 +1,60 @@
 export interface Project {
+    id?: string;
     slug: string;
     title: string;
+    subtitle?: string;
     role: string;
+    tags?: string[];
+    heroImage?: string;
     challenge: string;
+    challengeDetails?: {
+        heading: string;
+        mainText: string;
+        painPoints: string[];
+        goals?: string[];
+    };
+    research?: {
+        heading: string;
+        methodology: string;
+        findings: { icon: string; title: string; desc: string }[];
+    };
+    competitors?: { name: string; ui: string; nav: string; access: string }[];
     solution: string;
+    solutionDetails?: {
+        heading: string;
+        description: string;
+        modules: {
+            title: string;
+            desc?: string; // For text based modules
+            image?: string; // For visual modules
+            icon?: string; // For AI modules
+            items?: { source?: string; feature?: string; desc: string }[];
+        }[];
+    };
+    processFlow?: { step: number; title: string; desc: string }[];
+    accessibility?: {
+        heading: string;
+        features: string[];
+    };
+    statComparison?: { before: string; after: string; label: string };
+    collaboration?: {
+        heading: string;
+        text: string;
+        points: string[];
+    };
     features: string[];
     impact: {
         metric: string;
         label: string;
+        desc?: string;
+        value?: string; // For HP compat
     }[];
+    impactDetails?: {
+        heading: string;
+        // ...
+        footer: string;
+    };
+    conclusion?: { text: string; callout: string };
     category: string;
     visuals: {
         colorTheme: string; // Hex for glows/accents
@@ -19,17 +65,100 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
     {
+        id: "ai-unified-ux", // Added ID as per prompt though interface doesn't enforce it, strictly speaking slug is unique id.
         slug: "ai-unified-ux",
-        title: "AI-Powered Unified UX",
+        title: "AI-Powered Unified UX Design",
+        subtitle: "Requirements Analysis: A Case Study",
         role: "Strategy & Architecture",
-        challenge: "Fragmented requirements scattered across multiple platforms led to slow design workflows.",
+        heroImage: "/images/ai-hero-network.jpg",
+        tags: ["AI Strategy", "Automation", "Workflow Optimization"],
+
+        // SECTION 1: THE CHALLENGE
+        challenge: "Fragmented requirements led to slow workflows.", // Short summary for cards
+        challengeDetails: {
+            heading: "The Fragmented Landscape",
+            mainText: "Requirements are scattered across multiple platforms—Jira tickets, email threads, spreadsheets, and Confluence pages—creating a fragmented landscape that slows teams down.",
+            painPoints: [
+                "Manual consolidation causes costly delays and introduces errors.",
+                "Miscommunication between stakeholders leads to significant rework.",
+                "UX teams struggle to maintain a single source of truth.",
+                "Designers spend more time gathering data than designing."
+            ]
+        },
+
+        // SECTION 2: THE SOLUTION
         solution: "Implemented Intelligent Automation to transform fragmented inputs into streamlined design workflows.",
-        features: ["Automated Requirements Analysis", "Human-AI Collaboration", "Streamlined Workflows"],
-        impact: [
-            { metric: "88%", label: "Task Success Rate" },
-            { metric: "48%", label: "Faster Completion" },
-            { metric: "100%", label: "Adoption" }
+        solutionDetails: {
+            heading: "Intelligent Processing Layer",
+            description: "AI agents automatically parse and extract requirements from diverse sources, eliminating manual data collection.",
+            modules: [
+                {
+                    title: "Data Extraction",
+                    icon: "Database",
+                    items: [
+                        { source: "Jira Issues", desc: "Extracts user stories, acceptance criteria, and technical specifications." },
+                        { source: "Email Threads", desc: "Captures stakeholder feedback, changes, and critical decisions." },
+                        { source: "Spreadsheets", desc: "Processes structured data including feature lists and priority matrices." },
+                        { source: "Confluence", desc: "Aggregates documentation and research findings into unified insights." }
+                    ]
+                },
+                {
+                    title: "Smart Analysis (NLP)",
+                    icon: "Brain",
+                    items: [
+                        { feature: "Conflict Resolution", desc: "Identifies contradictions, detects duplicates, and structures data logically." },
+                        { feature: "Continuous Learning", desc: "Improves accuracy over time through designer feedback." }
+                    ]
+                },
+                {
+                    title: "The Unified Document",
+                    icon: "FileText",
+                    items: [
+                        { feature: "Single Source", desc: "Comprehensive Design Brief with complete context." },
+                        { feature: "Full Traceability", desc: "Maintains links back to original sources for transparency." }
+                    ]
+                }
+            ]
+        },
+
+        // SECTION 3: WORKFLOW DIAGRAM
+        processFlow: [
+            { step: 1, title: "Input Sources", desc: "Jira, Email, Excel, Confluence" },
+            { step: 2, title: "AI Processing", desc: "Extraction & Intelligent Analysis" },
+            { step: 3, title: "Unified Document", desc: "Structured Requirements Output" },
+            { step: 4, title: "Designer Review", desc: "Refinement & Iteration" }
         ],
+
+        // SECTION 4: HUMAN + AI COLLABORATION
+        collaboration: {
+            heading: "Strategic Partnership",
+            text: "Designers work alongside AI to refine requirements, shifting focus from data gathering to high-value creative problem solving.",
+            points: [
+                "Intelligent Review: Designer evaluates AI insights with domain expertise.",
+                "Strategic Focus: Time redirected to user research and innovation.",
+                "Gap Analysis: AI surfaces inconsistencies for rapid resolution."
+            ]
+        },
+
+        features: ["Automated Requirements Analysis", "Human-AI Collaboration", "Streamlined Workflows"],
+
+        // SECTION 5: IMPACT & METRICS
+        impact: [
+            { metric: "40%", label: "Time Savings", desc: "Reduction in hours spent consolidating requirements." },
+            { metric: "60%", label: "Fewer Revisions", desc: "Improved accuracy leads to significant decrease in rework cycles." },
+            { metric: "100%", label: "Single Source", desc: "Team alignment achieved through unified documentation." }
+        ],
+        impactDetails: {
+            heading: "Benefits Realized",
+            footer: "Scalable Solution: Adapts seamlessly to evolving project needs and growing teams without performance degradation."
+        },
+
+        // SECTION 6: CONCLUSION
+        conclusion: {
+            text: "The future of design lies in intelligent collaboration—where AI handles complexity and humans drive vision.",
+            callout: "Designers reclaim time for creativity, user research, and strategic thinking instead of data wrangling."
+        },
+
         category: "AI UX",
         visuals: {
             colorTheme: "#3b82f6", // Blue
@@ -42,17 +171,110 @@ export const PROJECTS: Project[] = [
         }
     },
     {
+        id: "hp-printer-ux",
         slug: "hp-printer-ux",
         title: "HP Printer Control Panel",
+        subtitle: "Reimagining the Enterprise Printing Experience",
         role: "Lead UX Designer",
-        challenge: "Legacy interface was complex and difficult to navigate for non-technical users.",
-        solution: "Redesigned the entire control panel experience with a focus on simplicity and context.",
-        features: ["Adaptive Touch Interface", "Contextual Smart Prompts", "Personalized Shortcuts"],
-        impact: [
-            { metric: "$3M+", label: "Cost Savings" },
-            { metric: "88%", label: "Task Success Rate" },
-            { metric: "48%", label: "Faster Task Completion" },
+        heroImage: "/images/hp-hero-panel.jpg",
+        tags: ["Enterprise UX", "Accessibility", "Hardware Interface"],
+
+        // SECTION 1: THE CHALLENGE
+        challenge: "Legacy interface created barriers.",
+        challengeDetails: {
+            heading: "Friction in the Legacy Interface",
+            mainText: "The legacy control panel created significant barriers for users, leading to low task completion rates and poor adoption of advanced features.",
+            painPoints: [
+                "Poor discoverability: Advanced features hidden in deep menus (<15% discovery).",
+                "Inconsistent navigation: Users abandon tasks when menus exceed 3 levels.",
+                "Accessibility barriers: 46% of users over 55 struggled with small touch targets.",
+                "Low efficiency: Average time-on-task was a sluggish 78 seconds."
+            ],
+            goals: [
+                "Streamline core workflows.",
+                "Increase feature adoption by 40%.",
+                "Elevate HP's premium positioning."
+            ]
+        },
+
+        // SECTION 2: RESEARCH & INSIGHTS
+        research: {
+            heading: "Data-Driven Discovery",
+            methodology: "Usability testing with 45 users, contextual inquiry in 12 global offices, and competitive benchmarking.",
+            findings: [
+                { icon: "Layers", title: "Navigation Depth", desc: "Users abandon tasks when menus exceed 3 levels deep. Flat architecture is critical." },
+                { icon: "Eye", title: "Visual Clarity", desc: "46% of older users struggle with low contrast text and small targets." },
+                { icon: "Search", title: "Feature Blindness", desc: "Advanced features hidden in settings saw <15% discovery rates." }
+            ]
+        },
+
+        // SECTION 3: COMPETITORS
+        competitors: [
+            { name: "Canon", ui: "Good responsiveness, dated visuals", nav: "4-5 levels deep", access: "Limited options" },
+            { name: "Epson", ui: "Modern design, slow performance", nav: "3-4 levels deep", access: "Voice only" },
+            { name: "HP (New)", ui: "Fluid, Premium Aesthetic", nav: "1-2 levels (Flat)", access: "WCAG AA Full Suite" }
         ],
+
+        statComparison: {
+            before: "78s",
+            after: "40s",
+            label: "Time on Task"
+        },
+
+        // SECTION 4: SOLUTION
+        solution: "A transformative interface that adapts to the user.",
+        solutionDetails: {
+            heading: "The Intelligent Control Panel",
+            description: "A transformative interface that adapts to the user, combining simplified navigation with AI-driven assistance.",
+            modules: [
+                {
+                    title: "Simplified Dashboard",
+                    desc: "Customizable home screen with large icons, reducing navigation depth to 1-2 taps for all core tasks.",
+                    image: "dashboard-mockup"
+                },
+                {
+                    title: "Contextual Smart Prompts",
+                    desc: "AI-driven suggestions appear precisely when needed (e.g., 'Toner low, order now?'), clearing clutter.",
+                    image: "smart-prompts-mockup"
+                },
+                {
+                    title: "Adaptive Accessibility",
+                    desc: "Dynamically adjusts touch targets (44px+) and contrast ratios based on user preferences.",
+                    image: "a11y-mockup"
+                },
+                {
+                    title: "Workflow Shortcuts",
+                    desc: "Users can save complex sequences (e.g., 'Scan to Email John') as one-tap homepage buttons.",
+                    image: "shortcuts-mockup"
+                }
+            ]
+        },
+
+        // SECTION 5: ACCESSIBILITY
+        accessibility: {
+            heading: "Designed for Everyone",
+            features: [
+                "WCAG AA Compliance (4.5:1 Contrast)",
+                "Adaptive Text Scaling (up to 200%)",
+                "Voice Guidance & Audio Cues",
+                "High Contrast Mode (One-tap activation)"
+            ]
+        },
+
+        features: ["Adaptive Touch Interface", "Contextual Smart Prompts", "Personalized Shortcuts"],
+
+        // SECTION 6: IMPACT
+        impact: [
+            { metric: "88%", label: "Task Success", desc: "Surpassed 85% target (up from 62%).", value: "88%" },
+            { metric: "40s", label: "Time on Task", desc: "Reduced by 48.7% (Beat 45s target).", value: "40s" },
+            { metric: "$3M+", label: "Cost Savings", desc: "Driven by 25% reduction in support tickets.", value: "$3M+" },
+            { metric: "4.5/5", label: "User Satisfaction", desc: "Significant jump from 3.1 baseline.", value: "4.5/5" }
+        ],
+        impactDetails: {
+            heading: "Business & User Impact",
+            footer: "Significantly improved user satisfaction and efficiency."
+        },
+
         category: "Enterprise",
         visuals: {
             colorTheme: "#f97316", // Orange
@@ -62,51 +284,6 @@ export const PROJECTS: Project[] = [
                 { title: "One-Tap Shortcuts", desc: "Personalized actions" },
                 { title: "Accessibility Mode", desc: "High contrast UI" }
             ]
-        }
-    },
-    {
-        slug: "smart-prompts",
-        title: "Smart Prompts",
-        role: "UX Researcher",
-        challenge: "Users struggled to find the right commands.",
-        solution: "Implemented AI-driven suggestions.",
-        features: ["Predictive Text", "Contextual Help"],
-        impact: [{ metric: "92%", label: "Satisfaction" }],
-        category: "ROI",
-        visuals: {
-            colorTheme: "#10b981", // Emerald
-            heroMeshParams: "from-emerald-900/40 via-background to-background",
-            gallery: []
-        }
-    },
-    {
-        slug: "schneider-electric-ux",
-        title: "Schneider Electric UX",
-        role: "UX Consultant",
-        challenge: "Complex industrial systems.",
-        solution: "Simplified dashboard for operators.",
-        features: ["Real-time Monitoring", "Mobile Access"],
-        impact: [{ metric: "30%", label: "Efficiency Boost" }],
-        category: "Enterprise",
-        visuals: {
-            colorTheme: "#06b6d4", // Cyan
-            heroMeshParams: "from-cyan-900/40 via-background to-background",
-            gallery: []
-        }
-    },
-    {
-        slug: "creativity-ai",
-        title: "Creativity + AI",
-        role: "Thought Leader",
-        challenge: "Defining the future of design.",
-        solution: "Exploring generative AI tools.",
-        features: ["Generative Art", "Prompt Engineering"],
-        impact: [{ metric: "10k+", label: "Views" }],
-        category: "AI UX",
-        visuals: {
-            colorTheme: "#8b5cf6", // Violet
-            heroMeshParams: "from-violet-900/40 via-background to-background",
-            gallery: []
         }
     }
 ];

@@ -1,36 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 interface DraggableChipProps {
     label: string;
     className?: string;
     initialPos?: { x: number; y: number };
+    constraintsRef: React.RefObject<HTMLDivElement>;
 }
 
-export default function DraggableChip({ label, className, initialPos }: DraggableChipProps) {
+export default function DraggableChip({ label, className, initialPos, constraintsRef }: DraggableChipProps) {
     const ref = useRef(null);
+    const [randomValues, setRandomValues] = useState({
+        x: [0, 20, -20, 0],
+        y: [0, -30, 10, 0],
+        duration: 15,
+        delay: 0
+    });
+
+    useEffect(() => {
+        setRandomValues({
+            x: [0, Math.random() * 30 - 15, Math.random() * -30 + 15, 0],
+            y: [0, Math.random() * -40 + 10, Math.random() * 20 - 10, 0],
+            duration: 10 + Math.random() * 10,
+            delay: Math.random() * 5
+        });
+    }, []);
 
     return (
         <motion.div
             ref={ref}
             drag
-            dragConstraints={{ left: -500, right: 500, top: -300, bottom: 300 }}
-            dragElastic={0.1}
+            dragConstraints={constraintsRef}
+            dragElastic={0.8}
             dragMomentum={true}
             whileDrag={{ scale: 1.1, cursor: "grabbing" }}
             whileHover={{ scale: 1.05, cursor: "grab" }}
             initial={initialPos}
             animate={{
-                y: [0, -10, 0],
-                rotate: [0, 2, -2, 0]
+                x: randomValues.x,
+                y: randomValues.y
             }}
             transition={{
-                y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: Math.random() * 2 },
-                rotate: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: Math.random() * 2 }
+                x: { duration: randomValues.duration, repeat: Infinity, ease: "easeInOut", delay: randomValues.delay },
+                y: { duration: randomValues.duration * 1.2, repeat: Infinity, ease: "easeInOut", delay: randomValues.delay }
             }}
-            className={`absolute px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/10 backdrop-blur-md rounded-full text-xs md:text-sm font-medium text-neutral-300 shadow-2xl z-20 select-none ${className}`}
+            className={`absolute px-5 py-3 md:px-7 md:py-4 bg-white/5 border border-white/10 backdrop-blur-md rounded-full text-sm md:text-base font-medium text-neutral-300 shadow-2xl z-20 select-none ${className}`}
         >
             {label}
         </motion.div>

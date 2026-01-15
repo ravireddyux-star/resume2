@@ -40,9 +40,9 @@ export default function MagneticButton() {
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
             style={{ x: mouseX, y: mouseY }}
-            className="group relative px-8 py-4 rounded-full bg-white text-black font-bold text-lg tracking-tight overflow-hidden hover:scale-105 transition-transform"
+            className="group relative px-8 py-4 rounded-full bg-white text-black font-bold text-lg tracking-tight overflow-hidden hover:scale-105 transition-transform shadow-[0_0_25px_rgba(0,255,255,0.4)]"
         >
-            <span className="relative z-10 group-hover:text-white transition-colors duration-300 mix-blend-difference">
+            <span className="relative z-10 text-black group-hover:text-white transition-colors duration-300">
                 VIEW WORK
             </span>
             <div className="absolute inset-0 bg-neutral-900 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />

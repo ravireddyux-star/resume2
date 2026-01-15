@@ -7,9 +7,6 @@ import { motion } from "framer-motion";
 const PROJECTS = [
     { id: 1, title: "AI-Powered Unified UX", meta: "Strategy", category: "AI UX", slug: "ai-unified-ux" },
     { id: 2, title: "HP Control Panel", meta: "$3M+ Savings", category: "Enterprise", slug: "hp-printer-ux" },
-    { id: 3, title: "Smart Prompts", meta: "88% Success Rate", category: "ROI", slug: "smart-prompts" },
-    { id: 4, title: "Schneider Electric UX", meta: "Consulting", category: "Enterprise", slug: "schneider-electric-ux" },
-    { id: 5, title: "Creativity + AI", meta: "Thought Leadership", category: "AI UX", slug: "creativity-ai" },
 ];
 
 const FILTERS = ["All", "AI UX", "ROI", "Enterprise"];

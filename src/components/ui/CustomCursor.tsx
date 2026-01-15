@@ -37,10 +37,11 @@ export default function CustomCursor() {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+            className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9999]"
             style={{
                 x: cursorXSpring,
                 y: cursorYSpring,
+                boxShadow: "0 0 30px 10px rgba(255, 255, 255, 0.4)" // White halo
             }}
             animate={{
                 scale: isHovering ? 2.5 : 1,

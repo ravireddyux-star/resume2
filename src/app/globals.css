@@ -10,12 +10,19 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+  background-attachment: fixed;
+  /* Ensure it covers full scroll */
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--heading);
   letter-spacing: -0.02em;
 }

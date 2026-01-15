@@ -36,10 +36,10 @@ export default function ExperienceTimeline() {
                     </span>
                     <div className="border-l border-white/10 pl-8 space-y-12">
                         {EXPERIENCE.map((item, index) => (
-                            <div key={index} className="relative">
-                                <span className="absolute -left-[37px] top-2 w-4 h-4 rounded-full bg-neutral-900 border border-white/20" />
-                                <span className="text-xs font-mono text-neutral-500 block mb-2">{item.year}</span>
-                                <h4 className="text-xl font-bold text-white">{item.role}</h4>
+                            <div key={index} className="relative flex flex-col items-start">
+                                <span className="absolute -left-[37.5px] top-[2px] w-3 h-3 rounded-full bg-neutral-900 border border-white/20 shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
+                                <span className="text-xs font-mono text-neutral-500 block mb-2 tracking-widest leading-none">{item.year}</span>
+                                <h4 className="text-xl font-bold text-white transition-colors hover:text-blue-400">{item.role}</h4>
                                 <p className="text-neutral-400">{item.company} {item.client && <span className="text-neutral-600">• {item.client}</span>}</p>
                             </div>
                         ))}

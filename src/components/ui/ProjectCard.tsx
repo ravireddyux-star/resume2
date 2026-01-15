@@ -22,15 +22,15 @@ export default function ProjectCard({ title, meta, slug, isDimmed, onHoverStart,
     return (
         <Link href={`/projects/${slug}`}>
             <motion.div
-                className={`relative break-inside-avoid mb-6 rounded-2xl bg-neutral-900/40 border border-white/5 p-8 overflow-hidden cursor-pointer transition-all duration-500 group ${isDimmed ? "opacity-30 blur-[2px] scale-95" : "opacity-100 scale-100"}`}
+                className={`relative break-inside-avoid mb-6 rounded-2xl bg-neutral-900/40 border border-white/5 p-8 overflow-hidden cursor-pointer transition-all duration-500 group ${isDimmed ? "opacity-60 blur-[1px] scale-95" : "opacity-100 scale-100 hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]"}`}
                 onHoverStart={onHoverStart}
                 onHoverEnd={onHoverEnd}
                 whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.2)" }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
-                    opacity: isDimmed ? 0.3 : 1,
+                    opacity: isDimmed ? 0.6 : 1,
                     y: 0,
-                    filter: isDimmed ? "blur(2px)" : "blur(0px)"
+                    filter: isDimmed ? "blur(1px)" : "blur(0px)"
                 }}
                 transition={{ duration: 0.5, delay: delay * 0.1 }}
             >
