@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const PROJECTS = [
     { id: 1, title: "AI-Powered Unified UX", meta: "Strategy", category: "AI UX", slug: "ai-unified-ux" },
-    { id: 2, title: "HP Control Panel", meta: "$3M+ Savings", category: "Enterprise", slug: "hp-printer-ux" },
+    { id: 2, title: "HP Control Panel", meta: "$3M+ Savings", category: "Enterprise", slug: "hp-printer-ux", image: "/images/hp8.jpg" },
 ];
 
 const FILTERS = ["All", "AI UX", "ROI", "Enterprise"];
@@ -59,6 +59,7 @@ export default function ProjectsPage() {
                         isDimmed={hoveredId !== null && hoveredId !== project.id}
                         onHoverStart={() => setHoveredId(project.id)}
                         onHoverEnd={() => setHoveredId(null)}
+                        image={(project as any).image}
                     />
                 ))}
             </div>

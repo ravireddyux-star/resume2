@@ -1,10 +1,11 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { notFound, useRouter } from "next/navigation";
-import { useRef } from "react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import { getProjectBySlug } from "@/lib/projectData";
-import { ArrowLeft, Database, Brain, FileText, Zap, Users, Layers, Eye, Search, Check, CheckCircle } from "lucide-react";
+import { ArrowLeft, Database, Brain, FileText, Zap, Users, Layers, Eye, Search, Check, CheckCircle, X } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import MockupFrame from "@/components/visuals/MockupFrame";
 import BentoGrid from "@/components/visuals/BentoGrid";
@@ -161,18 +162,13 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                     )}
 
                     <MockupFrame glowColor={project.visuals?.colorTheme}>
-                        <div className="w-full h-[400px] bg-gradient-to-br from-neutral-800 to-neutral-900 flex flex-col p-6 gap-4">
-                            {/* Abstract UI representation */}
-                            <div className="flex gap-4 mb-4">
-                                <div className="w-12 h-12 rounded-full bg-white/10" />
-                                <div className="flex-1 space-y-2">
-                                    <div className="w-1/3 h-3 bg-white/10 rounded" />
-                                    <div className="w-1/4 h-3 bg-white/5 rounded" />
-                                </div>
-                            </div>
-                            <div className="flex-1 rounded-lg border-2 border-dashed border-white/5 flex items-center justify-center text-neutral-600 font-mono text-xs text-center p-8">
-                                LEGACY INTERFACE SNAPSHOT
-                            </div>
+                        <div className="relative w-full h-[400px] bg-neutral-900 rounded-lg overflow-hidden border border-white/10">
+                            <Image
+                                src="/images/hp9.jpg"
+                                alt="Legacy Interface Snapshot"
+                                fill
+                                className="object-cover"
+                            />
                         </div>
                     </MockupFrame>
                 </div>
@@ -246,8 +242,19 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                                             )}
 
                                             {mod.image && (
-                                                <div className="w-full aspect-video bg-gradient-to-br from-neutral-800 to-neutral-700 rounded-lg flex items-center justify-center border border-white/5">
-                                                    <span className="text-xs font-mono text-white/30 uppercase tracking-widest">{mod.image}</span>
+                                                <div className="w-full aspect-video rounded-lg border border-white/5 overflow-hidden relative bg-neutral-800">
+                                                    {mod.image.startsWith("/") ? (
+                                                        <Image
+                                                            src={mod.image}
+                                                            alt={mod.title}
+                                                            fill
+                                                            className="object-cover transition-transform duration-500 hover:scale-105"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-700 flex items-center justify-center">
+                                                            <span className="text-xs font-mono text-white/30 uppercase tracking-widest">{mod.image}</span>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             )}
 
@@ -374,8 +381,9 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
 }
 
 // Internal Component: Parallax Gallery Strip
-function ParallaxGallery({ slides }: { slides: { title: string, desc: string }[] }) {
+function ParallaxGallery({ slides }: { slides: { title: string, desc: string, image?: string }[] }) {
     const scrollRef = useRef(null);
+    const [showGallery, setShowGallery] = useState(false);
     const { scrollYProgress } = useScroll({
         target: scrollRef,
         offset: ["start end", "end start"]
@@ -386,25 +394,90 @@ function ParallaxGallery({ slides }: { slides: { title: string, desc: string }[]
     if (!slides.length) return null;
 
     return (
-        <div ref={scrollRef} className="w-full relative">
-            <motion.div style={{ x }} className="flex gap-8 px-6 md:px-24 w-max">
-                {slides.map((slide, i) => (
-                    <div key={i} className="relative w-[300px] md:w-[500px] aspect-[4/3] rounded-xl overflow-hidden bg-neutral-900 border border-white/10 group">
-                        <div className="absolute inset-0 bg-neutral-800/50 animate-pulse" /> {/* Placeholder Image */}
+        <>
+            <div ref={scrollRef} className="w-full relative">
+                <motion.div style={{ x }} className="flex gap-8 px-6 md:px-24 w-max">
+                    {slides.slice(0, 4).map((slide, i) => (
+                        <div key={i} className="relative w-[300px] md:w-[500px] aspect-[4/3] rounded-xl overflow-hidden bg-neutral-900 border border-white/10 group cursor-pointer" onClick={() => setShowGallery(true)}>
+                            {slide.image ? (
+                                <Image
+                                    src={slide.image}
+                                    alt={slide.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                            ) : (
+                                <div className="absolute inset-0 bg-neutral-800/50 animate-pulse" />
+                            )}
 
-                        {/* Overlay Content */}
-                        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                            <h4 className="text-white font-bold text-lg">{slide.title}</h4>
-                            <p className="text-white/60 text-sm">{slide.desc}</p>
+                            {/* Overlay Content */}
+                            <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <h4 className="text-white font-bold text-lg">{slide.title}</h4>
+                                <p className="text-white/60 text-sm">{slide.desc}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
-                {/* Duplicate for length/feeling if needed, or mostly just let the 3 slide. */}
-                {/* Add a generic end card */}
-                <div className="w-[200px] flex items-center justify-center text-white/20 font-mono text-sm uppercase tracking-widest border border-white/5 rounded-xl">
-                    View All Screens
-                </div>
-            </motion.div>
-        </div>
+                    ))}
+
+                    {/* View All Button */}
+                    <button
+                        onClick={() => setShowGallery(true)}
+                        className="w-[200px] flex items-center justify-center text-white/50 hover:text-white font-mono text-sm uppercase tracking-widest border border-white/5 hover:border-white/20 rounded-xl transition-colors bg-white/5 hover:bg-white/10"
+                    >
+                        View All Screens
+                    </button>
+                </motion.div>
+            </div>
+
+            {/* Full Screen Gallery Modal */}
+            <AnimatePresence>
+                {showGallery && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl overflow-y-auto p-4 md:p-12"
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShowGallery(false)}
+                            className="fixed top-8 right-8 z-50 p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                        >
+                            <X className="text-white" size={24} />
+                        </button>
+
+                        <div className="max-w-7xl mx-auto space-y-12">
+                            <div className="text-center">
+                                <span className="text-neutral-500 font-mono text-sm uppercase tracking-widest mb-4 block">Project Gallery</span>
+                                <h2 className="text-3xl font-bold text-white">All Screens</h2>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {slides.map((slide, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: i * 0.05 }}
+                                        className="relative aspect-video rounded-lg overflow-hidden border border-white/10 bg-neutral-900 group"
+                                    >
+                                        {slide.image && (
+                                            <Image
+                                                src={slide.image}
+                                                alt={slide.title}
+                                                fill
+                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        )}
+                                        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                                            <p className="text-white font-medium">{slide.title}</p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 }

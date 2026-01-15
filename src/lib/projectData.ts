@@ -230,22 +230,22 @@ export const PROJECTS: Project[] = [
                 {
                     title: "Simplified Dashboard",
                     desc: "Customizable home screen with large icons, reducing navigation depth to 1-2 taps for all core tasks.",
-                    image: "dashboard-mockup"
+                    image: "/images/hp1.jpg"
                 },
                 {
                     title: "Contextual Smart Prompts",
                     desc: "AI-driven suggestions appear precisely when needed (e.g., 'Toner low, order now?'), clearing clutter.",
-                    image: "smart-prompts-mockup"
+                    image: "/images/hp4.jpg"
                 },
                 {
                     title: "Adaptive Accessibility",
                     desc: "Dynamically adjusts touch targets (44px+) and contrast ratios based on user preferences.",
-                    image: "a11y-mockup"
+                    image: "/images/hp3.jpg"
                 },
                 {
                     title: "Workflow Shortcuts",
                     desc: "Users can save complex sequences (e.g., 'Scan to Email John') as one-tap homepage buttons.",
-                    image: "shortcuts-mockup"
+                    image: "/images/hp2.jpg"
                 }
             ]
         },
@@ -280,9 +280,13 @@ export const PROJECTS: Project[] = [
             colorTheme: "#f97316", // Orange
             heroMeshParams: "from-orange-900/40 via-background to-background",
             gallery: [
-                { title: "Smart Home Screen", desc: "Context-aware tiles" },
-                { title: "One-Tap Shortcuts", desc: "Personalized actions" },
-                { title: "Accessibility Mode", desc: "High contrast UI" }
+                { title: "Dashboard", desc: "Main interface", image: "/images/hp1.jpg" },
+                { title: "Smart Prompts", desc: "Contextual help", image: "/images/hp4.jpg" },
+                { title: "Accessibility", desc: "High contrast mode", image: "/images/hp3.jpg" },
+                { title: "Shortcuts", desc: "One-tap actions", image: "/images/hp2.jpg" },
+                { title: "Scan Settings", desc: "Advanced options", image: "/images/hp5.jpg" },
+                { title: "User Profile", desc: "Personal settings", image: "/images/hp6.jpg" },
+                { title: "Maintenance", desc: "Status reports", image: "/images/hp7.jpg" }
             ]
         }
     }

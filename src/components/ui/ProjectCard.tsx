@@ -1,20 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import Image from "next/image";
 import Link from "next/link";
 
 interface ProjectCardProps {
     title: string;
     meta: string;
     slug: string;
+    image?: string;
     isDimmed: boolean;
     onHoverStart: () => void;
     onHoverEnd: () => void;
     delay: number;
 }
 
-export default function ProjectCard({ title, meta, slug, isDimmed, onHoverStart, onHoverEnd, delay }: ProjectCardProps) {
+export default function ProjectCard({ title, meta, slug, image, isDimmed, onHoverStart, onHoverEnd, delay }: ProjectCardProps) {
     // Import Link at top of file (I need to check if it's imported)
     // Actually I can just wrap the motion.div content or use router.push on click.
     // The previous implementation used div with onClick? No, it was just a div.
@@ -42,9 +43,18 @@ export default function ProjectCard({ title, meta, slug, isDimmed, onHoverStart,
                         <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 border border-white/10 px-2 py-1 rounded-full">{meta}</span>
                     </div>
                     <h3 className="text-2xl font-bold text-white group-hover:text-heading transition-colors">{title}</h3>
-                    {/* Abstract visual placeholder */}
-                    <div className="mt-4 h-32 w-full rounded-lg bg-white/5 border border-white/5 flex items-center justify-center overflow-hidden">
-                        <div className="w-full h-full bg-gradient-to-tr from-neutral-800 to-transparent opacity-50 block" />
+                    {/* Abstract visual placeholder or Image */}
+                    <div className="mt-4 h-32 w-full rounded-lg bg-white/5 border border-white/5 flex items-center justify-center overflow-hidden relative">
+                        {image ? (
+                            <Image
+                                src={image}
+                                alt={title}
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-gradient-to-tr from-neutral-800 to-transparent opacity-50 block" />
+                        )}
                     </div>
                 </div>
             </motion.div>
