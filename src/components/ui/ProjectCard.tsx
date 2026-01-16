@@ -16,12 +16,11 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ title, meta, slug, image, isDimmed, onHoverStart, onHoverEnd, delay }: ProjectCardProps) {
-    // Import Link at top of file (I need to check if it's imported)
-    // Actually I can just wrap the motion.div content or use router.push on click.
-    // The previous implementation used div with onClick? No, it was just a div.
-    // Let's wrapping it in Link.
+    const isExternal = slug.startsWith("http");
+    const linkHref = isExternal ? slug : `/projects/${slug}`;
+
     return (
-        <Link href={`/projects/${slug}`}>
+        <Link href={linkHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
             <motion.div
                 className={`relative break-inside-avoid mb-6 rounded-2xl bg-neutral-900/40 border border-white/5 p-8 overflow-hidden cursor-pointer transition-all duration-500 group ${isDimmed ? "opacity-60 blur-[1px] scale-95" : "opacity-100 scale-100 hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]"}`}
                 onHoverStart={onHoverStart}

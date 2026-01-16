@@ -161,16 +161,27 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                         </div>
                     )}
 
-                    <MockupFrame glowColor={project.visuals?.colorTheme}>
-                        <div className="relative w-full h-[400px] bg-neutral-900 rounded-lg overflow-hidden border border-white/10">
+                    {project.challengeImage ? (
+                        <div className="relative w-full h-[400px] rounded-2xl overflow-hidden border border-white/10 bg-neutral-900">
                             <Image
-                                src="/images/hp9.jpg"
-                                alt="Legacy Interface Snapshot"
+                                src={project.challengeImage}
+                                alt="Challenge Context"
                                 fill
                                 className="object-cover"
                             />
                         </div>
-                    </MockupFrame>
+                    ) : (
+                        <MockupFrame glowColor={project.visuals?.colorTheme}>
+                            <div className="relative w-full h-[400px] bg-neutral-900 rounded-lg overflow-hidden border border-white/10">
+                                <Image
+                                    src="/images/hp9.jpg"
+                                    alt="Legacy Interface Snapshot"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        </MockupFrame>
+                    )}
                 </div>
             </section>
 
@@ -324,8 +335,17 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                                 ))}
                             </ul>
                         </div>
-                        <div className="h-[300px] bg-gradient-to-tr from-blue-900/20 to-purple-900/20 rounded-2xl border border-white/10 flex items-center justify-center">
-                            <span className="text-white/20 font-mono text-xs uppercase tracking-widest">Collaboration Visualization</span>
+                        <div className="h-[300px] bg-gradient-to-tr from-blue-900/20 to-purple-900/20 rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden relative">
+                            {project.collaboration.image ? (
+                                <Image
+                                    src={project.collaboration.image}
+                                    alt={project.collaboration.heading}
+                                    fill
+                                    className="object-cover"
+                                />
+                            ) : (
+                                <span className="text-white/20 font-mono text-xs uppercase tracking-widest">Collaboration Visualization</span>
+                            )}
                         </div>
                     </div>
                 </section>

@@ -7,6 +7,7 @@ export interface Project {
     tags?: string[];
     heroImage?: string;
     challenge: string;
+    challengeImage?: string; // Image next to challenge text
     challengeDetails?: {
         heading: string;
         mainText: string;
@@ -40,7 +41,9 @@ export interface Project {
     collaboration?: {
         heading: string;
         text: string;
+        text: string;
         points: string[];
+        image?: string;
     };
     features: string[];
     impact: {
@@ -75,6 +78,7 @@ export const PROJECTS: Project[] = [
 
         // SECTION 1: THE CHALLENGE
         challenge: "Fragmented requirements led to slow workflows.", // Short summary for cards
+        challengeImage: "/images/ai1.jpg",
         challengeDetails: {
             heading: "The Fragmented Landscape",
             mainText: "Requirements are scattered across multiple platforms—Jira tickets, email threads, spreadsheets, and Confluence pages—creating a fragmented landscape that slows teams down.",
@@ -137,7 +141,8 @@ export const PROJECTS: Project[] = [
                 "Intelligent Review: Designer evaluates AI insights with domain expertise.",
                 "Strategic Focus: Time redirected to user research and innovation.",
                 "Gap Analysis: AI surfaces inconsistencies for rapid resolution."
-            ]
+            ],
+            image: "/images/ai4.jpg"
         },
 
         features: ["Automated Requirements Analysis", "Human-AI Collaboration", "Streamlined Workflows"],
@@ -163,11 +168,7 @@ export const PROJECTS: Project[] = [
         visuals: {
             colorTheme: "#3b82f6", // Blue
             heroMeshParams: "from-blue-900/40 via-background to-background",
-            gallery: [
-                { title: "Workflow Diagram", desc: "Automated routing logic" },
-                { title: "Dashboard UI", desc: "Real-time analytics view" },
-                { title: "Prompt Interface", desc: "Natural language input" }
-            ]
+            gallery: []
         }
     },
     {

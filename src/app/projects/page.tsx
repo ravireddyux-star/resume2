@@ -5,8 +5,9 @@ import ProjectCard from "@/components/ui/ProjectCard";
 import { motion } from "framer-motion";
 
 const PROJECTS = [
-    { id: 1, title: "AI-Powered Unified UX", meta: "Strategy", category: "AI UX", slug: "ai-unified-ux" },
+    { id: 1, title: "AI-Powered Unified UX", meta: "Strategy", category: "AI UX", slug: "ai-unified-ux", image: "/images/ai3.jpg" },
     { id: 2, title: "HP Control Panel", meta: "$3M+ Savings", category: "Enterprise", slug: "hp-printer-ux", image: "/images/hp8.jpg" },
+    { id: 3, title: "AI Remote Printing", meta: "Mobile App", category: "AI UX", slug: "https://hope-ankle-30121497.figma.site/" },
 ];
 
 const FILTERS = ["All", "AI UX", "ROI", "Enterprise"];
