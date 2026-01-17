@@ -311,7 +311,7 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                             ))}
                         </div>
                     </div>
-                )}
+                )}      
 
 
                 {project.visuals?.gallery && project.visuals.gallery.length > 0 && (
