@@ -41,7 +41,6 @@ export interface Project {
     collaboration?: {
         heading: string;
         text: string;
-        text: string;
         points: string[];
         image?: string;
     };
@@ -62,7 +61,7 @@ export interface Project {
     visuals: {
         colorTheme: string; // Hex for glows/accents
         heroMeshParams: string; // CSS gradient string
-        gallery: { title: string; desc: string }[]; // Placeholders for gallery items
+        gallery: { title: string; desc: string; image: string }[]; // Placeholders for gallery items
     };
 }
 
