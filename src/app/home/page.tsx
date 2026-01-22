@@ -78,7 +78,7 @@ export default function Home() {
 
             {/* Content Sections */}
             <div className="relative z-10 bg-background">
-                <AboutSection />
+                <AboutSection showSummary={false} />
                 <ExperienceTimeline />
             </div>
 

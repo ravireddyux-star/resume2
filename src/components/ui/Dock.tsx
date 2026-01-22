@@ -16,8 +16,8 @@ export default function Dock() {
         >
             <DockIcon mouseX={mouseX} href="/home" icon={<Home size={20} />} label="Home" />
             <DockIcon mouseX={mouseX} href="/projects" icon={<Briefcase size={20} />} label="Work" />
-            <DockIcon mouseX={mouseX} href="#" icon={<User size={20} />} label="About" />
-            <DockIcon mouseX={mouseX} href="mailto:ravi@example.com" icon={<Mail size={20} />} label="Contact" />
+            <DockIcon mouseX={mouseX} href="/about" icon={<User size={20} />} label="About" />
+            <DockIcon mouseX={mouseX} href="/contact" icon={<Mail size={20} />} label="Contact" />
         </motion.div>
     );
 }
