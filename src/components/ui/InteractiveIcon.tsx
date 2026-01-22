@@ -56,6 +56,7 @@ export default function InteractiveIcon({ icon, label, value, href, isEmail = fa
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => setIsClicked(!isClicked)}
+            aria-label={label}
         >
             <div className="relative flex items-center p-4 bg-white/5 border border-white/10 rounded-full cursor-pointer hover:bg-white/10 hover:border-white/20 transition-colors">
                 <div className="text-white">
