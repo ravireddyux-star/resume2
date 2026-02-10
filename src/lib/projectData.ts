@@ -58,6 +58,7 @@ export interface Project {
     };
     conclusion?: { text: string; callout: string };
     category: string;
+    prototypeLink?: string; // Link to external prototype (Figma, etc.)
     visuals: {
         colorTheme: string; // Hex for glows/accents
         heroMeshParams: string; // CSS gradient string
@@ -65,7 +66,79 @@ export interface Project {
     };
 }
 
+export const hpSmartApp: Project = {
+    id: "hp-smart-app",
+    slug: "hp-smart-app",
+    title: "HP Smart App",
+    subtitle: "Real-Time Print Preview Synchronization",
+    role: "Lead Mobile UX",
+    heroImage: "/images/hp-smart-hero.jpg",
+    tags: ["Mobile App", "Real-Time Sync", "WYSIWYG"],
+    prototypeLink: "https://twine-dark-88416982.figma.site",
+
+    // SECTION 1: THE CHALLENGE
+    challenge: "Mobile printing often suffers from the 'Gap of Uncertainty'—users hit print without knowing if the output will match their screen.",
+    challengeImage: "/images/hp-smart-home.jpg", // Using one of the gallery images as challenge image since specific one wasn't provided
+    challengeDetails: {
+        heading: "The 'Blind Print' Anxiety",
+        mainText: "Mobile printing often suffers from the 'Gap of Uncertainty'—users hit print without knowing if the output will match their screen. Layout shifts, paper size mismatches, and color rendering issues led to wasted paper and user frustration.",
+        painPoints: [
+            "Preview Latency: Static previews didn't reflect printer settings.",
+            "Wasted Resources: 1 in 5 prints were discarded due to layout errors.",
+            "Trust Gap: Users preferred desktop printing due to mobile inaccuracy."
+        ]
+    },
+
+    // SECTION 2: THE SOLUTION
+    solution: "A WebSocket-based real-time rendering engine that updates the mobile preview instantly as physical printer settings change.",
+    solutionDetails: {
+        heading: "True-to-Life Synchronization",
+        description: "A WebSocket-based real-time rendering engine that updates the mobile preview instantly as physical printer settings change.",
+        modules: [
+            {
+                title: "Live Render Engine",
+                desc: "Instant visual feedback when changing paper size, borders, or color mode.",
+                image: "live-render-mockup"
+            },
+            {
+                title: "Paper-to-Screen Match",
+                desc: "1:1 scale accuracy ensuring 'What You See Is Literally What You Get'.",
+                image: "scale-match-mockup"
+            },
+            {
+                title: "Smart Alerts",
+                desc: "Proactive warnings for low resolution or incompatible media types.",
+                image: "alert-ui-mockup"
+            }
+        ]
+    },
+
+    // SECTION 4: IMPACT
+    impact: [
+        { value: "18%", label: "Less Waste", desc: "Reduction in discarded paper due to accurate previews.", metric: "18%" },
+        { value: "2.5x", label: "Mobile Usage", desc: "Increase in print jobs initiated from mobile devices.", metric: "2.5x" },
+        { value: "4.8★", label: "App Store", desc: "Rating increased due to reliability improvements.", metric: "4.8★" }
+    ],
+    impactDetails: {
+        heading: "Tangible Results",
+        footer: "Delivering confidence in every print."
+    },
+
+    category: "Mobile Experience",
+    visuals: {
+        colorTheme: "#0096D6", // HP Blue
+        heroMeshParams: "from-blue-600/40 via-background to-background",
+        gallery: [
+            { title: "Home Dashboard", desc: "Main interface", image: "/images/hp-smart-home.jpg" },
+            { title: "Edit Flow", desc: "Editing options", image: "/images/hp-smart-edit.jpg" },
+            { title: "Print Preview", desc: "Real-time preview", image: "/images/hp-smart-preview.jpg" }
+        ]
+    },
+    features: ["Real-Time Sync", "WYSIWYG", "Smart Alerts"]
+};
+
 export const PROJECTS: Project[] = [
+    hpSmartApp,
     {
         id: "ai-unified-ux", // Added ID as per prompt though interface doesn't enforce it, strictly speaking slug is unique id.
         slug: "ai-unified-ux",

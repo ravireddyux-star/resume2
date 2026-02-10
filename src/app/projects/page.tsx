@@ -11,12 +11,14 @@ interface Project {
     category: string;
     slug: string;
     image?: string;
+    size?: "normal" | "tall";
 }
 
 const PROJECTS: Project[] = [
     { id: 1, title: "AI-Powered Unified UX", meta: "Strategy", category: "AI UX", slug: "ai-unified-ux", image: "/images/ai3.jpg" },
     { id: 2, title: "HP Control Panel", meta: "$3M+ Savings", category: "Enterprise", slug: "hp-printer-ux", image: "/images/hp8.jpg" },
-    { id: 3, title: "AI Remote Printing", meta: "Mobile App", category: "AI UX", slug: "https://hope-ankle-30121497.figma.site/" },
+    { id: 3, title: "HP Smart App: Real-Time Sync", meta: "Zero Print Waste", category: "Mobile Experience", slug: "hp-smart-app", image: "/images/hp8.jpg" },
+    { id: 4, title: "AI Remote Printing", meta: "Mobile App", category: "AI UX", slug: "https://hope-ankle-30121497.figma.site/" },
 ];
 
 const FILTERS = ["All", "AI UX", "ROI", "Enterprise"];
@@ -70,6 +72,7 @@ export default function ProjectsPage() {
                         onHoverStart={() => setHoveredId(project.id)}
                         onHoverEnd={() => setHoveredId(null)}
                         image={project.image}
+                        size={project.size}
                     />
                 ))}
             </div>

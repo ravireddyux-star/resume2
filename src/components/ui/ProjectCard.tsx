@@ -13,9 +13,10 @@ interface ProjectCardProps {
     onHoverStart: () => void;
     onHoverEnd: () => void;
     delay: number;
+    size?: "normal" | "tall";
 }
 
-export default function ProjectCard({ title, meta, slug, image, isDimmed, onHoverStart, onHoverEnd, delay }: ProjectCardProps) {
+export default function ProjectCard({ title, meta, slug, image, isDimmed, onHoverStart, onHoverEnd, delay, size = "normal" }: ProjectCardProps) {
     const isExternal = slug.startsWith("http");
     const linkHref = isExternal ? slug : `/projects/${slug}`;
 
@@ -43,7 +44,7 @@ export default function ProjectCard({ title, meta, slug, image, isDimmed, onHove
                     </div>
                     <h3 className="text-2xl font-bold text-white group-hover:text-heading transition-colors">{title}</h3>
                     {/* Abstract visual placeholder or Image */}
-                    <div className="mt-4 h-32 w-full rounded-lg bg-white/5 border border-white/5 flex items-center justify-center overflow-hidden relative">
+                    <div className={`mt-4 w-full rounded-lg bg-white/5 border border-white/5 flex items-center justify-center overflow-hidden relative ${size === "tall" ? "h-96" : "h-32"}`}>
                         {image ? (
                             <Image
                                 src={image}
