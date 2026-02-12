@@ -344,7 +344,7 @@ export default function HPSmartAppPage() {
                     </h3>
                     <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10 p-8 rounded-2xl backdrop-blur-sm">
                         <p className="text-xl text-blue-200 font-light">
-                            "{project.conclusion.callout}"
+                            &quot;{project.conclusion.callout}&quot;
                         </p>
                     </div>
                 </section>
