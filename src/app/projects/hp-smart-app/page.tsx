@@ -5,10 +5,11 @@ import { notFound, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { getProjectBySlug } from "@/lib/projectData";
-import { ArrowLeft, Zap, X, Smartphone, Wifi } from "lucide-react";
+import { ArrowLeft, Zap, X, Smartphone, Wifi, Layers, Lock, Cpu } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import MockupFrame from "@/components/visuals/MockupFrame";
 import BentoGrid from "@/components/visuals/BentoGrid";
+import ProcessFlow from "@/components/visuals/ProcessFlow";
 
 export default function HPSmartAppPage() {
     const project = getProjectBySlug("hp-smart-app");
@@ -212,6 +213,7 @@ export default function HPSmartAppPage() {
                                                 {i === 0 && <Wifi className="text-blue-400" />}
                                                 {i === 1 && <Smartphone className="text-green-400" />}
                                                 {i === 2 && <Zap className="text-yellow-400" />}
+                                                {i === 3 && <Layers className="text-purple-400" />}
                                                 {mod.title}
                                             </h4>
                                             <p className="text-neutral-400 text-sm">{mod.desc}</p>
@@ -258,6 +260,50 @@ export default function HPSmartAppPage() {
                     )}
                 </div>
 
+                {/* Workflow Section */}
+                {project.processFlow && (
+                    <div className="max-w-7xl mx-auto px-6 mt-24">
+                        <span className="text-lg font-bold text-white uppercase tracking-widest block mb-12 text-center">
+                            <span className="border-b border-white/20 pb-2 inline-block">User Experience</span>
+                        </span>
+                        <ProcessFlow steps={project.processFlow.map(step => ({
+                            step: step.step,
+                            title: step.title,
+                            desc: step.desc
+                        }))} />
+                    </div>
+                )}
+
+                {/* Challenges Overcome (Research) Section */}
+                {project.research && (
+                    <div className="max-w-7xl mx-auto px-6 mt-32">
+                        <span className="text-lg font-bold text-white uppercase tracking-widest block mb-12 text-left">
+                            <span className="border-b border-white/20 pb-2 inline-block">Challenges Overcome</span>
+                        </span>
+
+                        <div className="bg-neutral-900/30 border border-white/5 rounded-2xl p-8 md:p-12">
+                            <h3 className="text-3xl font-bold text-white mb-4">{project.research.heading}</h3>
+                            <p className="text-neutral-400 max-w-3xl mb-12">{project.research.methodology}</p>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {project.research.findings.map((item, i) => (
+                                    <div key={i} className="bg-black/50 border border-white/5 p-6 rounded-xl hover:border-white/20 transition-colors">
+                                        <div className="mb-4 text-blue-400">
+                                            {item.icon === "Zap" && <Zap size={24} />}
+                                            {item.icon === "Layers" && <Layers size={24} />}
+                                            {item.icon === "Lock" && <Lock size={24} />}
+                                            {item.icon === "Cpu" && <Cpu size={24} />}
+                                            {item.icon === "Wifi" && <Wifi size={24} />}
+                                        </div>
+                                        <h4 className="text-white font-bold mb-2">{item.title}</h4>
+                                        <p className="text-neutral-400 text-sm">{item.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Parallax Gallery */}
                 {project.visuals?.gallery && project.visuals.gallery.length > 0 && (
                     <div className="mt-24">
@@ -286,6 +332,23 @@ export default function HPSmartAppPage() {
                     </p>
                 )}
             </section>
+
+            {/* Future Vision / Conclusion */}
+            {project.conclusion && (
+                <section className="w-full max-w-4xl mx-auto px-6 py-20 text-center">
+                    <span className="text-lg font-bold text-white uppercase tracking-widest block mb-8">
+                        Future Vision
+                    </span>
+                    <h3 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
+                        {project.conclusion.text}
+                    </h3>
+                    <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10 p-8 rounded-2xl backdrop-blur-sm">
+                        <p className="text-xl text-blue-200 font-light">
+                            "{project.conclusion.callout}"
+                        </p>
+                    </div>
+                </section>
+            )}
 
             {/* Next Project CTA */}
             <section className="w-full py-40 flex flex-col items-center justify-center relative overflow-hidden">

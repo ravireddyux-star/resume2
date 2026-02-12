@@ -72,56 +72,91 @@ export const hpSmartApp: Project = {
     title: "HP Smart App",
     subtitle: "Real-Time Print Preview Synchronization",
     role: "Lead Mobile UX",
-    heroImage: "/images/hp-smart-hero.jpg",
+    heroImage: "/images/app1.jpg",
     tags: ["Mobile App", "Real-Time Sync", "WYSIWYG"],
     prototypeLink: "https://twine-dark-88416982.figma.site",
 
     // SECTION 1: THE CHALLENGE
-    challenge: "Mobile printing often suffers from the 'Gap of Uncertainty'—users hit print without knowing if the output will match their screen.",
-    challengeImage: "/images/hp-smart-home.jpg", // Using one of the gallery images as challenge image since specific one wasn't provided
+    challenge: "Printing was often a source of frustration, marked by inefficiencies and a lack of control.",
+    challengeImage: "/images/app2.jpg",
     challengeDetails: {
         heading: "The 'Blind Print' Anxiety",
-        mainText: "Mobile printing often suffers from the 'Gap of Uncertainty'—users hit print without knowing if the output will match their screen. Layout shifts, paper size mismatches, and color rendering issues led to wasted paper and user frustration.",
+        mainText: "Before the HP Smart App, printing was often a source of frustration, marked by inefficiencies and a lack of control. Users couldn't visualize documents before printing, leading to unexpected layouts and errors.",
         painPoints: [
-            "Preview Latency: Static previews didn't reflect printer settings.",
-            "Wasted Resources: 1 in 5 prints were discarded due to layout errors.",
-            "Trust Gap: Users preferred desktop printing due to mobile inaccuracy."
+            "No Real-time Preview: Users couldn't visualize documents before printing.",
+            "Wasted Resources: Misprints resulted in significant waste of paper and ink.",
+            "Device Synchronization Issues: Lack of unified status updates caused confusion.",
+            "Lost Productivity: Cumbersome workflows hindered efficiency."
         ]
     },
 
     // SECTION 2: THE SOLUTION
-    solution: "A WebSocket-based real-time rendering engine that updates the mobile preview instantly as physical printer settings change.",
+    solution: "An intelligent system enabling real-time synchronization between mobile devices and printers.",
     solutionDetails: {
-        heading: "True-to-Life Synchronization",
-        description: "A WebSocket-based real-time rendering engine that updates the mobile preview instantly as physical printer settings change.",
+        heading: "Intelligent Preview Synchronization",
+        description: "HP engineered a groundbreaking solution to eliminate printing frustrations by enabling real-time synchronization between mobile devices and printers. This intelligent system bridges the gap between your phone and your printer, delivering a truly seamless experience.",
         modules: [
             {
-                title: "Live Render Engine",
-                desc: "Instant visual feedback when changing paper size, borders, or color mode.",
-                image: "live-render-mockup"
+                title: "Live Document Preview",
+                desc: "Visualize exact document layouts, colors, and margins on your mobile device before printing.",
+                image: "/images/app3.jpg"
             },
             {
-                title: "Paper-to-Screen Match",
-                desc: "1:1 scale accuracy ensuring 'What You See Is Literally What You Get'.",
-                image: "scale-match-mockup"
+                title: "Instant Device Status",
+                desc: "Receive real-time updates on printer status, ink levels, and job progress across all connected devices.",
+                image: "/images/app4.jpg"
             },
             {
-                title: "Smart Alerts",
-                desc: "Proactive warnings for low resolution or incompatible media types.",
-                image: "alert-ui-mockup"
+                title: "On-the-Go Editing",
+                desc: "Utilize built-in tools to crop, rotate, resize, and adjust print settings directly from the app.",
+                image: "/images/app2.jpg"
+            },
+            {
+                title: "Cloud-Based Sync",
+                desc: "Leverage cloud technology for secure, synchronized access to your documents and printer.",
+                image: "/images/app1.jpg"
             }
         ]
     },
 
-    // SECTION 4: IMPACT
+    // SECTION 3: WORKFLOW (User Experience)
+    processFlow: [
+        { step: 1, title: "Open App", desc: "Access your printing hub." },
+        { step: 2, title: "Select Document", desc: "Choose files from cloud or device." },
+        { step: 3, title: "Real-Time Preview", desc: "Visualize your print before executing." },
+        { step: 4, title: "Edit & Adjust", desc: "Fine-tune settings on the fly." },
+        { step: 5, title: "Confirm & Print", desc: "Seamlessly send to your HP printer." }
+    ],
+
+    // SECTION 4: CHALLENGES OVERCOME (Mapped to Research)
+    research: {
+        heading: "Engineering Excellence",
+        methodology: "HP's journey to a seamless printing experience was marked by overcoming significant technical hurdles through innovative engineering and strategic development.",
+        findings: [
+            { icon: "Zap", title: "Real-Time Latency", desc: "Optimized data protocols to ensure near-instantaneous synchronization." },
+            { icon: "Layers", title: "Cross-Platform", desc: "Unified backend API for consistent experience across iOS and Android." },
+            { icon: "Lock", title: "Security", desc: "End-to-end encryption and multi-factor authentication." },
+            { icon: "Cpu", title: "Firmware", desc: "Custom modular firmware for advanced remote control." },
+            { icon: "Wifi", title: "Network Reliability", desc: "Intelligent error handling for challenging network environments." }
+        ]
+    },
+
+    // SECTION 5: IMPACT
     impact: [
-        { value: "18%", label: "Less Waste", desc: "Reduction in discarded paper due to accurate previews.", metric: "18%" },
-        { value: "2.5x", label: "Mobile Usage", desc: "Increase in print jobs initiated from mobile devices.", metric: "2.5x" },
-        { value: "4.8★", label: "App Store", desc: "Rating increased due to reliability improvements.", metric: "4.8★" }
+        { value: "40%", label: "Paper Waste", desc: "Significant reduction in misprints and resource consumption.", metric: "40%" },
+        { value: "60%", label: "Job Completion", desc: "Faster print job execution, saving valuable time.", metric: "60%" },
+        { value: "85%", label: "User Satisfaction", desc: "Notable increase in user happiness due to seamless printing.", metric: "85%" },
+        { value: "50%", label: "Support Tickets", desc: "Reduction in technical inquiries related to printing issues.", metric: "50%" }
     ],
     impactDetails: {
-        heading: "Tangible Results",
-        footer: "Delivering confidence in every print."
+        heading: "Transforming the Experience",
+        footer: "These outcomes translate directly into improved productivity, reduced operational costs, and a more eco-friendly printing ecosystem."
+    },
+
+    // SECTION 6: FUTURE VISION (Mapped to Conclusion)
+    conclusion: {
+        text: "HP is dedicated to pioneering the future of printing, constantly evolving to meet and anticipate the dynamic needs of users.",
+        callout: "Our roadmap includes AI-powered optimization, voice-controlled printing, and augmented reality previews."
     },
 
     category: "Mobile Experience",
@@ -129,12 +164,13 @@ export const hpSmartApp: Project = {
         colorTheme: "#0096D6", // HP Blue
         heroMeshParams: "from-blue-600/40 via-background to-background",
         gallery: [
-            { title: "Home Dashboard", desc: "Main interface", image: "/images/hp-smart-home.jpg" },
-            { title: "Edit Flow", desc: "Editing options", image: "/images/hp-smart-edit.jpg" },
-            { title: "Print Preview", desc: "Real-time preview", image: "/images/hp-smart-preview.jpg" }
+            { title: "Smart Home Dashboard", desc: "Main control center for all devices", image: "/images/app1.jpg" },
+            { title: "Document Scan & Edit", desc: "Advanced mobile scanning features", image: "/images/app2.jpg" },
+            { title: "Live Print Preview", desc: "Real-time WYSIWYG rendering", image: "/images/app3.jpg" },
+            { title: "Print Status & Queue", desc: "Job tracking and management", image: "/images/app4.jpg" }
         ]
     },
-    features: ["Real-Time Sync", "WYSIWYG", "Smart Alerts"]
+    features: ["Real-Time Sync", "WYSIWYG", "Smart Alerts", "Cloud Sync", "On-the-Go Editing"]
 };
 
 export const PROJECTS: Project[] = [
