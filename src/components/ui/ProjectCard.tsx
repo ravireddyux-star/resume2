@@ -23,7 +23,7 @@ export default function ProjectCard({ title, meta, slug, image, isDimmed, onHove
     return (
         <Link href={linkHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
             <motion.div
-                className={`relative break-inside-avoid mb-6 rounded-2xl bg-neutral-900/40 border border-white/5 p-8 overflow-hidden cursor-pointer transition-all duration-500 group ${isDimmed ? "opacity-60 blur-[1px] scale-95" : "opacity-100 scale-100 hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]"}`}
+                className={`relative break-inside-avoid h-full flex flex-col justify-between rounded-2xl bg-neutral-900/40 border border-white/5 p-8 overflow-hidden cursor-pointer transition-all duration-500 group ${isDimmed ? "opacity-60 blur-[1px] scale-95" : "opacity-100 scale-100 hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]"}`}
                 onHoverStart={onHoverStart}
                 onHoverEnd={onHoverEnd}
                 whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.2)" }}
@@ -42,7 +42,7 @@ export default function ProjectCard({ title, meta, slug, image, isDimmed, onHove
                     <div className="flex items-center justify-between">
                         <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 border border-white/10 px-2 py-1 rounded-full">{meta}</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-heading transition-colors">{title}</h3>
+                    <h3 className="text-2xl font-bold text-white group-hover:text-heading transition-colors min-h-[4rem] flex items-center">{title}</h3>
                     {/* Abstract visual placeholder or Image */}
                     <div className={`mt-4 w-full rounded-lg bg-white/5 border border-white/5 flex items-center justify-center overflow-hidden relative ${size === "tall" ? "h-96" : "h-32"}`}>
                         {image ? (

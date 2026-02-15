@@ -19,6 +19,7 @@ const PROJECTS: Project[] = [
     { id: 2, title: "HP Control Panel", meta: "$3M+ Savings", category: "Enterprise", slug: "hp-printer-ux", image: "/images/hp8.jpg" },
     { id: 3, title: "HP Smart App: Real-Time Sync", meta: "Zero Print Waste", category: "Mobile Experience", slug: "hp-smart-app", image: "/images/hp8.jpg" },
     { id: 4, title: "AI Remote Printing", meta: "Mobile App", category: "AI UX", slug: "https://hope-ankle-30121497.figma.site/" },
+    { id: 5, title: "AI-Powered Mobile Printing Assistant", meta: "Mobile AI", category: "AI UX", slug: "ai-mobile-printing", image: "/images/aimobile1.jpg" },
 ];
 
 const FILTERS = ["All", "AI UX", "ROI", "Enterprise"];
@@ -59,8 +60,8 @@ export default function ProjectsPage() {
                 </div>
             </div>
 
-            {/* Masonry Grid */}
-            <div className="max-w-7xl mx-auto columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            {/* Grid Layout */}
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project, index) => (
                     <ProjectCard
                         key={project.id}

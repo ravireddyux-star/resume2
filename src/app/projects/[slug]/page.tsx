@@ -289,9 +289,28 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                 </div>
 
                 {/* Workflow Diagram */}
-                {project.processFlow && (
+                {(project.processFlow || project.processFlowImage) && (
                     <div className="max-w-7xl mx-auto px-6 mb-16">
-                        <ProcessFlow steps={project.processFlow} />
+                        {project.processFlowText && (
+                            <div className="max-w-3xl mx-auto text-center mb-12">
+                                <p className="text-xl text-neutral-300 leading-relaxed font-light">
+                                    {project.processFlowText}
+                                </p>
+                            </div>
+                        )}
+
+                        {project.processFlowImage && (
+                            <div className="relative w-full max-w-4xl mx-auto aspect-video mb-12 rounded-2xl overflow-hidden border border-white/10 bg-neutral-900">
+                                <Image
+                                    src={project.processFlowImage}
+                                    alt="Process Flow Diagram"
+                                    fill
+                                    className="object-contain p-8"
+                                />
+                            </div>
+                        )}
+
+                        {project.processFlow && <ProcessFlow steps={project.processFlow} />}
                     </div>
                 )}
 
@@ -311,11 +330,13 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                             ))}
                         </div>
                     </div>
-                )}      
+                )}
 
 
                 {project.visuals?.gallery && project.visuals.gallery.length > 0 && (
-                    <ParallaxGallery slides={project.visuals.gallery} />
+                    <div className="mt-24">
+                        <ParallaxGallery slides={project.visuals.gallery} />
+                    </div>
                 )}
             </section>
 

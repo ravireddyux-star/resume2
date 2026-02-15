@@ -33,6 +33,8 @@ export interface Project {
         }[];
     };
     processFlow?: { step: number; title: string; desc: string }[];
+    processFlowImage?: string; // For the "How It Works" diagram
+    processFlowText?: string; // Intro text for the process flow
     accessibility?: {
         heading: string;
         features: string[];
@@ -173,8 +175,131 @@ export const hpSmartApp: Project = {
     features: ["Real-Time Sync", "WYSIWYG", "Smart Alerts", "Cloud Sync", "On-the-Go Editing"]
 };
 
+// ------------------------------------------------------------------
+// NEW CASE STUDY: AI-POWERED MOBILE PRINTING ASSISTANT
+// ------------------------------------------------------------------
+export const aiMobilePrinting: Project = {
+    id: "ai-mobile-printing",
+    slug: "ai-mobile-printing",
+    title: "AI-Powered Mobile Printing Assistant",
+    subtitle: "Print Smarter, Anywhere — Effortless Mobile-to-Printer AI Integration",
+    role: "Product Designer",
+    category: "Mobile AI",
+    tags: ["AI Integration", "Mobile Printing", "Workflow Automation"],
+    heroImage: "/images/aimobile1.jpg",
+    prototypeLink: "https://hope-ankle-30121497.figma.site/",
+
+    // SECTION 1: THE CHALLENGE
+    challenge: "Traditional printing workflows are plagued by setup complexity and errors.",
+    challengeImage: "/images/aimobile2.jpg",
+    challengeDetails: {
+        heading: "The Printing Pain Points We All Know",
+        mainText: "Complex setups, frequent errors, and remote access limitations create significant barriers to productivity.",
+        painPoints: [
+            "Complex Setup Frustration: Driver installations and network configs waste time.",
+            "Frequent Print Errors: Misalignments and jams lead to costly mistakes.",
+            "Remote Access Limitations: diverse apps and connections kill convenience."
+        ],
+        goals: [
+            "Eliminate setup friction.",
+            "Reduce print errors significantly.",
+            "Enable seamless remote printing."
+        ]
+    },
+
+    // SECTION 2: THE SOLUTION
+    solution: "An intelligent AI agent that bridges mobile devices and printers seamlessly.",
+    solutionDetails: {
+        heading: "Enter the AI-Powered Mobile Printing Assistant",
+        description: "Our AI agent creates a seamless connection, eliminating compatibility barriers and optimizing every print job.",
+        modules: [
+            {
+                title: "Intelligent Bridge Technology",
+                desc: "Seamless connection between mobile and printer, eliminating compatibility issues.",
+                image: "/images/aimobile3.jpg"
+            },
+            {
+                title: "Zero-Hassle Setup",
+                desc: "No drivers, no config—instant connection that works every time.",
+                image: "/images/aimobile4.jpg"
+            },
+            {
+                title: "Smart Output Optimization",
+                desc: "AI adjusts layouts and removes waste for optimal quality automatically.",
+                image: "/images/aimobile5.jpg"
+            },
+            {
+                title: "Always-On Availability",
+                desc: "24/7 operation handles jobs whenever inspiration strikes.",
+                image: "/images/aimobile6.jpg"
+            }
+        ]
+    },
+
+    // SECTION 3: HOW IT WORKS (Pinwheel)
+    processFlowText: "The mobile app transmits print jobs through our AI layer to your PC, which manages the connected smart printer. AI analyzes documents, optimizes layouts, and provides real-time updates.",
+    processFlowImage: "/images/aimobile7.jpg",
+    processFlow: [
+        { step: 1, title: "Mobile App Sends Job", desc: "User initiates print from any location." },
+        { step: 2, title: "AI Optimizes Document", desc: "Layouts cleaned and resources saved." },
+        { step: 3, title: "PC Manages Printer", desc: "Secure local handling of the print queue." },
+        { step: 4, title: "Smart Printer Prints", desc: "High-quality output with zero errors." }
+    ],
+
+    // SECTION 4: AI INTELLIGENCE (Research/Features)
+    research: {
+        heading: "AI Features Driving Smarter Printing",
+        methodology: "Leveraging machine learning for content analysis and predictive maintenance.",
+        findings: [
+            { icon: "FileText", title: "Automatic Formatting", desc: "Removes ads, trims pages, and reformats for professional output." },
+            { icon: "Layers", title: "Resource Conservation", desc: "Reduces paper waste by up to 40% only printing essential content." },
+            { icon: "Brain", title: "Document Editing", desc: "Rewrite, summarize, and adjust fonts directly within the app." },
+            { icon: "Zap", title: "Predictive Troubleshooting", desc: "Detects jams and ink issues before they cause downtime." }
+        ]
+    },
+
+    // SECTION 5: COLLABORATION (Supported Devices)
+    collaboration: {
+        heading: "Supported Devices & Integration",
+        text: "Universal compatibility with 9,000+ printers and seamless cloud integration.",
+        points: [
+            "Universal Printer Compatibility: HP, Canon, Epson, Brother, Samsung, etc.",
+            "Cloud Service Integration: Google Drive, Dropbox, iCloud.",
+            "Cross-Platform Mobile Support: iOS and Android native apps.",
+            "Enterprise-Grade Security: Encrypted local Wi-Fi connections."
+        ],
+        image: "/images/aimobile8.jpg"
+    },
+
+    // SECTION 6: IMPACT
+    impact: [
+        { metric: "Fast", label: "Setup Time Saved", desc: "Dramatically faster setup compared to traditional methods." },
+        { metric: "40%", label: "Paper Waste Reduced", desc: "AI-driven layout optimization eliminates unnecessary pages." },
+        { metric: "94%", label: "Accuracy Rate", desc: "Unprecedented scale and accuracy in print specifications." },
+        { metric: "24/7", label: "Availability", desc: "Continuous AI assistance ensures no bottlenecks." }
+    ],
+    impactDetails: {
+        heading: "Real-World Impact: Efficiency & Convenience",
+        footer: "Empowering small businesses and remote workers providing freedom to print on-demand without IT support."
+    },
+
+    // SECTION 7: CONCLUSION
+    conclusion: {
+        text: "The future of mobile printing is AI-driven, making printing effortless, sustainable, and accessible everywhere.",
+        callout: "Join thousands of professionals who have already transformed their printing experience with intelligent automation that just works."
+    },
+
+    visuals: {
+        colorTheme: "#ef4444", // Red/Pink from screenshots
+        heroMeshParams: "from-red-600/40 via-background to-background",
+        gallery: []
+    },
+    features: ["Intelligent Bridge", "Zero-Hassle Setup", "Smart Output", "Always-On Availability"]
+};
+
 export const PROJECTS: Project[] = [
     hpSmartApp,
+    aiMobilePrinting,
     {
         id: "ai-unified-ux", // Added ID as per prompt though interface doesn't enforce it, strictly speaking slug is unique id.
         slug: "ai-unified-ux",

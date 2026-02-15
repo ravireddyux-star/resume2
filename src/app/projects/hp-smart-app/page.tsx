@@ -217,11 +217,7 @@ export default function HPSmartAppPage() {
                                                 {mod.title}
                                             </h4>
                                             <p className="text-neutral-400 text-sm">{mod.desc}</p>
-                                            {mod.image && !mod.image.includes("mockup") && (
-                                                <div className="mt-4 relative h-32 w-full rounded-lg overflow-hidden border border-white/5">
-                                                    <Image src={mod.image} alt={mod.title} fill className="object-cover" />
-                                                </div>
-                                            )}
+
                                         </div>
                                     ))}
                                 </div>
@@ -333,22 +329,7 @@ export default function HPSmartAppPage() {
                 )}
             </section>
 
-            {/* Future Vision / Conclusion */}
-            {project.conclusion && (
-                <section className="w-full max-w-4xl mx-auto px-6 py-20 text-center">
-                    <span className="text-lg font-bold text-white uppercase tracking-widest block mb-8">
-                        Future Vision
-                    </span>
-                    <h3 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
-                        {project.conclusion.text}
-                    </h3>
-                    <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10 p-8 rounded-2xl backdrop-blur-sm">
-                        <p className="text-xl text-blue-200 font-light">
-                            &quot;{project.conclusion.callout}&quot;
-                        </p>
-                    </div>
-                </section>
-            )}
+            
 
             {/* Next Project CTA */}
             <section className="w-full py-40 flex flex-col items-center justify-center relative overflow-hidden">
